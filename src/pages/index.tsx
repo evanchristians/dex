@@ -8,7 +8,7 @@ import { Wrapper } from "../components/Wrapper";
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <Container minH="100vh" bg="linear-gradient(to bottom, #43cea2, #185a9d)">
+    <Container minH="100vh" bg="linear-gradient(to bottom, #1E6C9D, #185a9d)">
       <Wrapper>
         <Input
           variant="outline"
@@ -29,13 +29,9 @@ const Index = ({ pokemon }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const data = await Axios.get("https://pokeapi.co/api/v2/pokemon?limit=100")
-    .then((res) => {
-      return Axios.all(
-        res.data.results.map(({ url }: { url: any }) => Axios.get(url))
-      ).then(Axios.spread((...responses) => responses));
-    })
-    .then((data) => data.map((results) => (results as any).data));
+  const data = await Axios.get(
+    "https://pokeapi.co/api/v2/pokemon?limit=600"
+  ).then((res) => res.data.results);
 
   return {
     props: {

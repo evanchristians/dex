@@ -1,5 +1,6 @@
-import { Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react";
+import { Grid, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import Card from "./Card";
 
 export interface IPokemon {
   pokemon: any;
@@ -11,7 +12,7 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
 
   useEffect(() => {
     if (pokemon) {
-      setPokeData(pokemon);
+      setPokeData(pokemon.slice(0, 20));
     }
   }, [pokemon]);
 
@@ -19,35 +20,15 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
     if (search.length > 0) {
       setPokeData(pokemon.filter((data: any) => data.name.includes(search)));
     } else {
-      setPokeData(pokemon);
+      setPokeData(pokemon.slice(0, 20));
     }
   }, [search]);
 
   if (pokeData)
     return (
       <Grid templateColumns="repeat(4, 1fr)" gap={6} width="100%" py={8}>
-        {pokeData.map((poke: any) => (
-          <GridItem key={poke.id}>
-            <Flex
-              w="100%"
-              h="auto"
-              bg="#00000011"
-              padding={6}
-              flexDir="column"
-              alignItems="center"
-              borderRadius={6}
-            >
-              <Image
-                boxSize="100px"
-                objectFit="cover"
-                src={poke.sprites.front_default}
-                alt={poke.name}
-              />
-              <Text color="white">
-                #{poke.id} {poke.name}
-              </Text>
-            </Flex>
-          </GridItem>
+        {pokeData.map((poke: any, key: string) => (
+          <Card key={key} url={poke.url} />
         ))}
       </Grid>
     );
