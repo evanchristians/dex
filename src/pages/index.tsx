@@ -19,7 +19,6 @@ const Index = ({ pokemon }: any) => {
           _placeholder={{ color: "white" }}
           my={5}
           placeholder="search pokemon"
-          value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
         <Pokemon pokemon={pokemon} search={searchQuery} />
@@ -28,7 +27,7 @@ const Index = ({ pokemon }: any) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const data = await Axios.get(
     "https://pokeapi.co/api/v2/pokemon?limit=600"
   ).then((res) => res.data.results);

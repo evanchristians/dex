@@ -14,11 +14,13 @@
     "@emotion/styled": "11.0.0",
     "axios": "^0.21.0",
     "framer-motion": "^2.9.4",
+    "memory-cache": "^0.2.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/memory-cache": "^0.2.1",
     "@types/node": "^14.6.0",
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
