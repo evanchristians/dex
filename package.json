@@ -18,7 +18,8 @@
     "next": "latest",
     "react": "^17.0.1",
     "react-async-image": "^3.0.0",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-is-in-viewport": "^1.2.1"
   },
   "devDependencies": {
     "@types/memory-cache": "^0.2.1",

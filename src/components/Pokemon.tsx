@@ -1,4 +1,4 @@
-import { Grid, Text } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
@@ -24,15 +24,13 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
     }
   }, [search]);
 
-  if (pokeData)
-    return (
-      <Grid templateColumns="repeat(4, 1fr)" gap={6} width="100%" py={8}>
-        {pokeData.map((poke: any, key: string) => (
-          <Card key={key} url={poke.url} />
-        ))}
-      </Grid>
-    );
-  else return <Text color="white">No Results</Text>;
+  return (
+    <Grid templateColumns="repeat(4, 1fr)" gap={6} width="100%" py={8}>
+      {pokeData.map((poke: any, key: string) => (
+        <Card key={key} url={poke.url} />
+      ))}
+    </Grid>
+  );
 };
 
 export default Pokemon;
