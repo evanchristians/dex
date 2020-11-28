@@ -1,6 +1,7 @@
-import { Fade, Flex, GridItem, Image, Spinner, Text } from "@chakra-ui/react";
+import { Fade, Flex, GridItem, Spinner, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import fetchWithCache from "../lib/fetchWithCache";
+import Image from "next/image";
 
 export interface ICard {
   url: string;
@@ -27,10 +28,10 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
             borderRadius={6}
           >
             <Image
-              boxSize="100px"
-              objectFit="cover"
               src={poke.sprites.front_default}
               alt={poke.name}
+              width={120}
+              height={120}
             />
             <Text color="white" mt="auto">
               #{poke.id} {poke.name}
