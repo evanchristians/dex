@@ -27,7 +27,7 @@ const Index = ({ pokemon }: any) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const data = await Axios.get(
     "https://pokeapi.co/api/v2/pokemon?limit=600"
   ).then((res) => res.data.results);
