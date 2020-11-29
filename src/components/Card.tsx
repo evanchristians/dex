@@ -1,4 +1,4 @@
-import { Fade, Flex, GridItem, Spinner, Text, Link, Box } from "@chakra-ui/react";
+import { Fade, Flex, GridItem, Spinner, Text, Link, Box, Tag } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Visible from "react-visibility-sensor";
@@ -53,16 +53,16 @@ export const Card: React.FC<ICard> = ({ url }) => {
                         height={120}
                       />
                     </Box>
+                    <Tag color="white" bg="purple.base">No.{poke.id.toString().padStart(3, "0")}</Tag>
                     <Flex
                       bg="purple.light"
                       width="100%"
                       p={3}
                       flexDir="column"
-                      mt={4}
+                      mt={2}
                       textAlign="center"
                       color="white"
                     >
-                      <Text>No.{poke.id.toString().padStart(3, "0")}</Text>
                       <Text>{poke.name}</Text>
                     </Flex>
                   </>
