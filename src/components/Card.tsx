@@ -1,9 +1,10 @@
-import { Fade, Flex, GridItem, Spinner, Text, Link } from "@chakra-ui/react";
+import { Fade, Flex, GridItem, Spinner, Text, Link, Box } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Visible from "react-visibility-sensor";
 import fetchWithCache from "../lib/fetchWithCache";
 import NextLink from "next/link";
+import { Types } from "./Types";
 
 export interface ICard {
   url: string;
@@ -33,27 +34,31 @@ export const Card: React.FC<ICard> = ({ url }) => {
             <Link _hover={{ textDecoration: "none" }}>
               <Flex
                 w="100%"
-                h={200}
+                h={275}
                 bg="#ffffff11"
                 flexDir="column"
                 alignItems="center"
                 overflow="hidden"
                 borderRadius={12}
+                position="relative"
               >
                 {poke ? (
                   <>
-                    <Image
-                      src={poke.sprites.front_default}
-                      alt={poke.name}
-                      width={120}
-                      height={120}
-                    />
+                    <Types types={poke.types}></Types>
+                    <Box mt="auto">
+                      <Image
+                        src={poke.sprites.front_default}
+                        alt={poke.name}
+                        width={120}
+                        height={120}
+                      />
+                    </Box>
                     <Flex
                       bg="purple.light"
                       width="100%"
                       p={3}
                       flexDir="column"
-                      mt="auto"
+                      mt={4}
                       textAlign="center"
                       color="white"
                     >

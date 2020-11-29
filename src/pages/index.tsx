@@ -13,7 +13,7 @@ const Index = ({ pokemon }: any) => {
         <Input
           variant="outline"
           borderColor="transparent"
-          borderRadius={12}
+          borderRadius={10}
           p={6}
           bg="white"
           color="purple.base"
