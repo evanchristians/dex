@@ -15,8 +15,6 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
 
   useEffect(() => {
     if (inView) {
-      console.log("fetching");
-
       fetchWithCache(url).then((res) => setPoke(res));
     }
     return;

@@ -11,10 +11,6 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
   const [pokeData, setPokeData] = useState(pokemon);
 
   useEffect(() => {
-    console.log(pokeData);
-  }, [pokeData]);
-
-  useEffect(() => {
     if (pokemon) {
       setPokeData(pokemon.slice(0, 100));
     }
