@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
         <Head />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@600&display=swap"
           rel="stylesheet"
         />
         <body>
