@@ -24,7 +24,7 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
     <GridItem key={poke ? poke.id : key}>
       <Fade in={true}>
         <Viewport
-          type="fit"
+          type="overlap"
           onEnter={() => {
             setInView(true);
           }}
