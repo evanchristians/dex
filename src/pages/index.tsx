@@ -1,9 +1,9 @@
 import { Input } from "@chakra-ui/react";
-import Axios from "axios";
 import React, { useState } from "react";
 import { Container } from "../components/Container";
 import Pokemon from "../components/Pokemon";
 import { Wrapper } from "../components/Wrapper";
+import fetchWithCache from "../lib/fetchWithCache";
 
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,9 +28,9 @@ const Index = ({ pokemon }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const data = await Axios.get(
-    "https://pokeapi.co/api/v2/pokemon?limit=600"
-  ).then((res) => res.data.results);
+  const data = await fetchWithCache(
+    "https://pokeapi.co/api/v2/pokemon?limit=1000"
+  ).then((res) => res.results);
 
   return {
     props: {

@@ -2,7 +2,7 @@ import Axios from "axios";
 import Cache from "memory-cache";
 
 const fetchWithCache = async (url: string) => {
-  const cachedData = Cache.get(url);
+  const cachedData = await Cache.get(url);
   if (cachedData) return cachedData;
   else {
     const hours = 24;

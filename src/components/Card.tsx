@@ -1,8 +1,9 @@
-import { Fade, Flex, GridItem, Spinner, Text } from "@chakra-ui/react";
+import { Fade, Flex, GridItem, Spinner, Text, Link } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Visible from "react-visibility-sensor";
 import fetchWithCache from "../lib/fetchWithCache";
+import NextLink from "next/link";
 
 export interface ICard {
   url: string;
@@ -28,32 +29,36 @@ export const Card: React.FC<ICard> = ({ url }) => {
             setInView(isVisible);
           }}
         >
-          <Flex
-            w="100%"
-            h={200}
-            bg="#00000011"
-            padding={6}
-            flexDir="column"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius={6}
-          >
-            {poke ? (
-              <>
-                <Image
-                  src={poke.sprites.front_default}
-                  alt={poke.name}
-                  width={120}
-                  height={120}
-                />
-                <Text color="white" mt="auto">
-                  #{poke.id} {poke.name}
-                </Text>
-              </>
-            ) : (
-              <Spinner color="white" />
-            )}
-          </Flex>
+          <NextLink href={poke ? `pokemon/${poke.id}` : "/"}>
+            <Link _hover={{ textDecoration: "none" }}>
+              <Flex
+                w="100%"
+                h={200}
+                bg="#00000011"
+                padding={6}
+                flexDir="column"
+                alignItems="center"
+                justifyContent="center"
+                borderRadius={6}
+              >
+                {poke ? (
+                  <>
+                    <Image
+                      src={poke.sprites.front_default}
+                      alt={poke.name}
+                      width={120}
+                      height={120}
+                    />
+                    <Text color="white" mt="auto">
+                      #{poke.id} {poke.name}
+                    </Text>
+                  </>
+                ) : (
+                  <Spinner color="white" />
+                )}
+              </Flex>
+            </Link>
+          </NextLink>
         </Visible>
       </Fade>
     </GridItem>
