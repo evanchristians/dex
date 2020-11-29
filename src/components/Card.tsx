@@ -1,9 +1,18 @@
-import { Fade, Flex, GridItem, Spinner, Text, Link, Box, Tag } from "@chakra-ui/react";
+import {
+  Box,
+  Fade,
+  Flex,
+  GridItem,
+  Link,
+  Spinner,
+  Tag,
+  Text,
+} from "@chakra-ui/react";
 import Image from "next/image";
+import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import Visible from "react-visibility-sensor";
 import fetchWithCache from "../lib/fetchWithCache";
-import NextLink from "next/link";
 import { Types } from "./Types";
 
 export interface ICard {
@@ -53,7 +62,9 @@ export const Card: React.FC<ICard> = ({ url }) => {
                         height={120}
                       />
                     </Box>
-                    <Tag color="white" bg="purple.base">No.{poke.id.toString().padStart(3, "0")}</Tag>
+                    <Tag color="white" bg="purple.base">
+                      No.{poke.id.toString().padStart(3, "0")}
+                    </Tag>
                     <Flex
                       bg="purple.light"
                       width="100%"
