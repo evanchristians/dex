@@ -47,6 +47,7 @@ export const Card: React.FC<ICard> = ({ url }) => {
                 bg="#ffffff11"
                 flexDir="column"
                 alignItems="center"
+                justifyContent="center"
                 overflow="hidden"
                 borderRadius={12}
                 position="relative"
@@ -74,11 +75,11 @@ export const Card: React.FC<ICard> = ({ url }) => {
                       textAlign="center"
                       color="white"
                     >
-                      <Text>{poke.name}</Text>
+                      <Text textTransform="capitalize">{poke.name}</Text>
                     </Flex>
                   </>
                 ) : (
-                  <Spinner color="purple.base" />
+                  <Spinner color="white" />
                 )}
               </Flex>
             </Link>
