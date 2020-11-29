@@ -8,18 +8,19 @@ import fetchWithCache from "../lib/fetchWithCache";
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <Container minH="100vh" bg="linear-gradient(to bottom, #1E6C9D, #185a9d)">
+    <Container minH="100vh" bg="purple.base">
       <Wrapper>
         <Input
           variant="outline"
           borderColor="transparent"
+          borderRadius={12}
           p={6}
-          bg="#00000033"
-          color="white"
-          _placeholder={{ color: "white" }}
+          bg="white"
+          color="purple.base"
           my={5}
           placeholder="search pokemon"
           onChange={(event) => setSearchQuery(event.target.value)}
+          _focus={{ borderColor: "purple.base" }}
         />
         <Pokemon pokemon={pokemon} search={searchQuery} />
       </Wrapper>

@@ -8,6 +8,7 @@ export const Wrapper = (props: FlexProps) => {
       alignItems="center"
       justifyContent="flex-start"
       width="min(1024px, 100%)"
+      px={4}
       {...props}
     />
   )

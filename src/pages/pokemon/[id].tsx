@@ -15,7 +15,7 @@ const Pokemon = () => {
   );
 
   return (
-    <Container minH="100vh" bg="linear-gradient(to bottom, #1E6C9D, #185a9d)">
+    <Container minH="100vh" bg="purple.base">
       <Wrapper>{poke ? <Text>{poke.name}</Text> : <Spinner />}</Wrapper>
     </Container>
   );

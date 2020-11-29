@@ -34,12 +34,11 @@ export const Card: React.FC<ICard> = ({ url }) => {
               <Flex
                 w="100%"
                 h={200}
-                bg="#00000011"
-                padding={6}
+                bg="#ffffff11"
                 flexDir="column"
                 alignItems="center"
-                justifyContent="center"
-                borderRadius={6}
+                overflow="hidden"
+                borderRadius={12}
               >
                 {poke ? (
                   <>
@@ -49,12 +48,21 @@ export const Card: React.FC<ICard> = ({ url }) => {
                       width={120}
                       height={120}
                     />
-                    <Text color="white" mt="auto">
-                      #{poke.id} {poke.name}
-                    </Text>
+                    <Flex
+                      bg="purple.light"
+                      width="100%"
+                      p={3}
+                      flexDir="column"
+                      mt="auto"
+                      textAlign="center"
+                      color="white"
+                    >
+                      <Text>No.{poke.id.toString().padStart(3, "0")}</Text>
+                      <Text>{poke.name}</Text>
+                    </Flex>
                   </>
                 ) : (
-                  <Spinner color="white" />
+                  <Spinner color="purple.base" />
                 )}
               </Flex>
             </Link>
