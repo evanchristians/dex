@@ -27,7 +27,7 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
   return (
     <Grid templateColumns="repeat(4, 1fr)" gap={6} width="100%" py={8}>
       {pokeData.map((poke: any, key: string) => (
-        <Card key={key} url={poke.url} />
+        <Card url={poke.url} key={key}/>
       ))}
     </Grid>
   );

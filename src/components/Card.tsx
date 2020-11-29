@@ -1,15 +1,14 @@
 import { Fade, Flex, GridItem, Spinner, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import fetchWithCache from "../lib/fetchWithCache";
 import Image from "next/image";
-import { Viewport } from "react-is-in-viewport";
+import React, { useEffect, useState } from "react";
+import Visible from "react-visibility-sensor";
+import fetchWithCache from "../lib/fetchWithCache";
 
 export interface ICard {
   url: string;
-  key: string;
 }
 
-export const Card: React.FC<ICard> = ({ url, key }) => {
+export const Card: React.FC<ICard> = ({ url }) => {
   const [poke, setPoke] = useState<any>();
   const [inView, setInView] = useState(false);
 
@@ -21,12 +20,12 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
   }, [inView, url]);
 
   return (
-    <GridItem key={poke ? poke.id : key}>
+    <GridItem key={poke ? poke.id : undefined}>
       <Fade in={true}>
-        <Viewport
-          type="overlap"
-          onEnter={() => {
-            setInView(true);
+        <Visible
+          partialVisibility
+          onChange={(isVisible) => {
+            setInView(isVisible);
           }}
         >
           <Flex
@@ -48,14 +47,14 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
                   height={120}
                 />
                 <Text color="white" mt="auto">
-                  #{poke.id ?? key} {poke.name}
+                  #{poke.id} {poke.name}
                 </Text>
               </>
             ) : (
               <Spinner color="white" />
             )}
           </Flex>
-        </Viewport>
+        </Visible>
       </Fade>
     </GridItem>
   );
