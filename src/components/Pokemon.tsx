@@ -11,8 +11,12 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
   const [pokeData, setPokeData] = useState(pokemon);
 
   useEffect(() => {
+    console.log(pokeData);
+  }, [pokeData]);
+
+  useEffect(() => {
     if (pokemon) {
-      setPokeData(pokemon.slice(0, 20));
+      setPokeData(pokemon.slice(0, 100));
     }
   }, [pokemon]);
 
@@ -20,7 +24,7 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
     if (search.length > 0) {
       setPokeData(pokemon.filter((data: any) => data.name.includes(search)));
     } else {
-      setPokeData(pokemon.slice(0, 20));
+      setPokeData(pokemon.slice(0, 100));
     }
   }, [search]);
 

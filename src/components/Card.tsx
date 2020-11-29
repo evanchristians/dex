@@ -20,7 +20,7 @@ export const Card: React.FC<ICard> = ({ url, key }) => {
       fetchWithCache(url).then((res) => setPoke(res));
     }
     return;
-  }, [inView]);
+  }, [inView, url]);
 
   return (
     <GridItem key={poke ? poke.id : key}>
