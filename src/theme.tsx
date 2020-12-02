@@ -1,7 +1,11 @@
 import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
-const fonts = { body: `Overpass Mono`, mono: `'Menlo', monospace` };
+const fonts = {
+  heading: `Overpass Mono`,
+  body: `Overpass Mono`,
+  mono: `Overpass Mono`,
+};
 
 const breakpoints = createBreakpoints({
   sm: "40em",
@@ -11,6 +15,13 @@ const breakpoints = createBreakpoints({
 });
 
 const theme = extendTheme({
+  styles: {
+    global: {
+      "body": {
+        overflowX: "hidden",
+      },
+    },
+  },
   colors: {
     black: "#16161D",
     purple: {

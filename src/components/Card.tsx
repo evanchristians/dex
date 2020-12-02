@@ -39,7 +39,7 @@ export const Card: React.FC<ICard> = ({ url }) => {
             setInView(isVisible);
           }}
         >
-          <NextLink href={poke ? `pokemon/${poke.id}` : "/"}>
+          <NextLink href={poke ? `pokemon/${poke.name}` : "/"}>
             <Link _hover={{ textDecoration: "none" }}>
               <Flex
                 w="100%"

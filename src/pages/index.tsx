@@ -8,7 +8,7 @@ import fetchWithCache from "../lib/fetchWithCache";
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <Container minH="100vh" bg="purple.base">
+    <Container minH="100vh">
       <Wrapper>
         <Input
           variant="outline"
