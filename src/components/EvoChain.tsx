@@ -60,7 +60,7 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
   }, [url]);
 
   return (
-    <Flex flexDir="column" ml="auto">
+    <Flex flexDir="column" ml="auto" display={["none", "none", "flex"]}>
       <List display="flex">
         {evoDetails.length > 0
           ? evoDetails.map((evoDetail: any, key: any) => {
@@ -88,7 +88,7 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
                                 alt={evoDetail.name}
                                 width={80}
                                 height={80}
-                                unoptimized={true}
+                                // unoptimized={true}
                               />
                             </Box>
                             <Tag color="white" bg="purple.light">

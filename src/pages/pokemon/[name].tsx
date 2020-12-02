@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, Spinner, Stack, Text } from "@chakra-ui/react";
+import { transform } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -22,13 +23,9 @@ const Pokemon = () => {
   }
 
   return (
-    <Container minH="100vh" bg="purple.base">
+    <Container bg="purple.base">
       {poke ? (
-        <Stack
-          spacing="clamp(10rem, 15vw, 20rem)"
-          width="100%"
-          alignItems="center"
-        >
+        <>
           <Wrapper flexDir="row">
             <Heading
               my={12}
@@ -49,38 +46,39 @@ const Pokemon = () => {
             </Heading>
             <EvoChain url={poke.species.url} />
           </Wrapper>
-          <Wrapper
-            minH="100vh"
-            zIndex="1"
-            transform="translateY(clamp(120px, 12.5vw, 200px))"
-          >
-            text goes here
-          </Wrapper>
           <Flex
+            justifyContent="center"
+            mt={200}
             zIndex="0"
-            position="absolute"
-            flexDir="column"
-            alignItems="center"
             bg="purple.light"
-            width="160vw"
-            borderRadius="100% 100% 0 0"
-            border="25vw solid #9080F8"
-            px={12}
-            top="clamp(10rem, 15vw, 20rem)"
+            width="100%"
+            position="relative"
+            flex="1"
+            _after={{
+              content: "''",
+              bg: "purple.light",
+              width: "160vw",
+              borderRadius: "50% 50% 0 0",
+              height: "50vw",
+              position: "absolute",
+              top: "0",
+              left: "50%",
+              transform: "translate(-50%, -7rem)",
+              zIndex: "-1",
+            }}
           >
-            <Box
-              transform="translateY(calc(-60% - 25vw))"
-              justifySelf="flex-start"
-            >
-              <Image
-                src={poke.sprites.other["official-artwork"].front_default}
-                alt={poke.name}
-                width={330}
-                height={330}
-              />
-            </Box>
+            <Wrapper>
+              <Box alignSelf="center" transform="translateY(-15rem)">
+                <Image
+                  src={poke.sprites.other["official-artwork"].front_default}
+                  alt={poke.name}
+                  width={330}
+                  height={330}
+                />
+              </Box>
+            </Wrapper>
           </Flex>
-        </Stack>
+        </>
       ) : (
         <Spinner />
       )}
