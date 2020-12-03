@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Skeleton, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -28,28 +28,29 @@ const Pokemon = () => {
             fontSize="clamp(45px, 5vw, 76px)"
             textTransform="capitalize"
           >
-            <Skeleton isLoaded={poke}>
+            <Skeleton isLoaded={poke} startColor="purple.base" endColor="purple.light">
               <Text
                 mr={2}
                 fontSize="clamp(24px, 4vw, 36px)"
                 color="purple.light"
+                display="flex"
               >
                 {poke
                   ? `No.${poke.id.toString().padStart(3, "0")}`
                   : "loading..."}
               </Text>
             </Skeleton>
-            <Skeleton isLoaded={poke}>
+            <Skeleton isLoaded={poke} my={2} startColor="purple.base" endColor="purple.light">
               {poke ? poke.name : "loading..."}
             </Skeleton>
-            <Skeleton isLoaded={poke}>
+            <Skeleton isLoaded={poke} startColor="purple.base" endColor="purple.light">
               <Box position="relative">
-                {poke ? <Types types={poke.types} /> : "loading..."}
+                {poke ? <Types types={poke.types} /> : <Box height="4rem" width="10rem"></Box>}
               </Box>
             </Skeleton>
           </Heading>
-          <Skeleton isLoaded={poke} ml="auto">
-            {poke ? <EvoChain url={poke.species.url} /> : "loading..."}
+          <Skeleton isLoaded={poke} ml="auto" startColor="purple.base" endColor="purple.light">
+            {poke ? <EvoChain url={poke.species.url} /> : <Box height="8rem" width="16rem"></Box>}
           </Skeleton>
         </Wrapper>
         <Flex
