@@ -71,7 +71,7 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
                   borderRadius={12}
                   mr={2}
                 >
-                  <NextLink href={`pokemon/${evoDetail.name}`}>
+                  <NextLink href={`/pokemon/${evoDetail.name}`}>
                     <Link _hover={{ textDecoration: "none" }}>
                       <Flex
                         flexDir="column"
@@ -88,7 +88,6 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
                                 alt={evoDetail.name}
                                 width={80}
                                 height={80}
-                                // unoptimized={true}
                               />
                             </Box>
                             <Tag color="white" bg="purple.light">

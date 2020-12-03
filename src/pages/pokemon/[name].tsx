@@ -1,8 +1,7 @@
-import { Box, Flex, Heading, Spinner, Stack, Text } from "@chakra-ui/react";
-import { transform } from "framer-motion";
+import { Box, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container } from "../../components/Container";
 import EvoChain from "../../components/EvoChain";
 import { Types } from "../../components/Types";
@@ -13,8 +12,6 @@ const Pokemon = () => {
   const router = useRouter();
   const { name } = router.query;
   const [poke, setPoke] = useState<any>();
-
-  useEffect(() => console.log(poke), [poke]);
 
   if (name) {
     fetchWithCache(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>

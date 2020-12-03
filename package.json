@@ -19,7 +19,8 @@
     "react": "^17.0.1",
     "react-async-image": "^3.0.0",
     "react-dom": "^17.0.1",
-    "react-visibility-sensor": "^5.1.1"
+    "react-visibility-sensor": "^5.1.1",
+    "swr": "^0.3.9"
   },
   "devDependencies": {
     "@types/memory-cache": "^0.2.1",

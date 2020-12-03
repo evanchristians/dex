@@ -7,6 +7,18 @@ import fetchWithCache from "../lib/fetchWithCache";
 
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
+  // const fetch = async () => {
+  //   const data = await fetchWithCache(
+  //     "https://pokeapi.co/api/v2/pokemon?limit=980"
+  //   ).then((res) => res.results);
+  //   return data;
+  // };
+
+  // const { data: pokemon } = useSWR(
+  //   "https://pokeapi.co/api/v2/pokemon?limit=980",
+  //   fetch
+  // );
+
   return (
     <Container minH="100vh">
       <Wrapper>
@@ -22,7 +34,7 @@ const Index = ({ pokemon }: any) => {
           onChange={(event) => setSearchQuery(event.target.value)}
           _focus={{ borderColor: "purple.base" }}
         />
-        <Pokemon pokemon={pokemon} search={searchQuery} />
+        {pokemon ? <Pokemon pokemon={pokemon} search={searchQuery} /> : null}
       </Wrapper>
     </Container>
   );
