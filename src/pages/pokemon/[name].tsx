@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Skeleton, Spinner, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -21,64 +21,72 @@ const Pokemon = () => {
 
   return (
     <Container bg="purple.base">
-      {poke ? (
-        <>
-          <Wrapper flexDir="row">
-            <Heading
-              my={12}
-              fontSize="clamp(45px, 5vw, 76px)"
-              textTransform="capitalize"
-            >
+      <>
+        <Wrapper flexDir="row">
+          <Heading
+            my={12}
+            fontSize="clamp(45px, 5vw, 76px)"
+            textTransform="capitalize"
+          >
+            <Skeleton isLoaded={poke}>
               <Text
                 mr={2}
                 fontSize="clamp(24px, 4vw, 36px)"
                 color="purple.light"
               >
-                No.{poke.id.toString().padStart(3, "0")}
+                {poke
+                  ? `No.${poke.id.toString().padStart(3, "0")}`
+                  : "loading..."}
               </Text>
-              {poke.name}
+            </Skeleton>
+            <Skeleton isLoaded={poke}>
+              {poke ? poke.name : "loading..."}
+            </Skeleton>
+            <Skeleton isLoaded={poke}>
               <Box position="relative">
-                <Types types={poke.types} />
+                {poke ? <Types types={poke.types} /> : "loading..."}
               </Box>
-            </Heading>
-            <EvoChain url={poke.species.url} />
-          </Wrapper>
-          <Flex
-            justifyContent="center"
-            mt={200}
-            zIndex="0"
-            bg="purple.light"
-            width="100%"
-            position="relative"
-            flex="1"
-            _after={{
-              content: "''",
-              bg: "purple.light",
-              width: "160vw",
-              borderRadius: "50% 50% 0 0",
-              height: "50vw",
-              position: "absolute",
-              top: "0",
-              left: "50%",
-              transform: "translate(-50%, -7rem)",
-              zIndex: "-1",
-            }}
-          >
-            <Wrapper>
-              <Box alignSelf="center" transform="translateY(-15rem)">
+            </Skeleton>
+          </Heading>
+          <Skeleton isLoaded={poke} ml="auto">
+            {poke ? <EvoChain url={poke.species.url} /> : "loading..."}
+          </Skeleton>
+        </Wrapper>
+        <Flex
+          justifyContent="center"
+          mt={200}
+          zIndex="0"
+          bg="purple.light"
+          width="100%"
+          position="relative"
+          flex="1"
+          _after={{
+            content: "''",
+            bg: "purple.light",
+            width: "160vw",
+            borderRadius: "50% 50% 0 0",
+            height: "50vw",
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, -7rem)",
+            zIndex: "-1",
+          }}
+        >
+          <Wrapper>
+            <Box alignSelf="center" transform="translateY(-15rem)">
+              {poke ? (
                 <Image
                   src={poke.sprites.other["official-artwork"].front_default}
                   alt={poke.name}
                   width={330}
                   height={330}
                 />
-              </Box>
-            </Wrapper>
-          </Flex>
-        </>
-      ) : (
-        <Spinner />
-      )}
+              ) : null}
+            </Box>
+          </Wrapper>
+        </Flex>
+      </>
     </Container>
   );
 };

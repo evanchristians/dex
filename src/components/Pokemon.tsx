@@ -8,7 +8,7 @@ export interface IPokemon {
 }
 
 export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
-  const [pokeData, setPokeData] = useState(pokemon);
+  const [pokeData, setPokeData] = useState();
 
   useEffect(() => {
     if (pokemon) {
@@ -38,9 +38,11 @@ export const Pokemon: React.FC<IPokemon> = ({ pokemon, search }) => {
       width="100%"
       pb={8}
     >
-      {pokeData.map((poke: any, key: string) => (
-        <Card url={poke.url} key={key} />
-      ))}
+      {typeof pokeData !== "undefined"
+        ? pokeData.map((poke: any, key: string) => (
+            <Card url={poke.url} key={key} />
+          ))
+        : null}
     </Grid>
   );
 };

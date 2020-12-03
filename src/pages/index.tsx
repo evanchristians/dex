@@ -44,7 +44,6 @@ export const getStaticProps = async () => {
   const data = await fetchWithCache(
     "https://pokeapi.co/api/v2/pokemon?limit=1000"
   ).then((res) => res.results);
-
   return {
     props: {
       pokemon: data,
