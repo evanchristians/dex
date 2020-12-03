@@ -11,6 +11,7 @@ export default class Document extends NextDocument {
           href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@600&display=swap"
           rel="stylesheet"
         />
+        <script src="https://kit.fontawesome.com/ce5d40ef27.js" />
         <body>
           <ColorModeScript />
           <Main />

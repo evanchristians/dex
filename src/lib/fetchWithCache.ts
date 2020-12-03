@@ -1,13 +1,16 @@
 import Axios from "axios";
-import Cache from "memory-cache";
+import cache from "memory-cache";
 
 const fetchWithCache = async (url: string) => {
-  const cachedData = await Cache.get(url);
+  const cachedData = await cache.get(url);
   if (cachedData) return cachedData;
   else {
     const hours = 24;
-    const data = await Axios.get(url).then((res) => res.data);
-    Cache.put(url, data, hours * 1000 * 60 * 60);
+    const data = Axios.get(url).then(async (res) => {
+      await cache.put(url, res.data, hours * 1000 * 60 * 60);
+      return res.data;
+    });
+
     return data;
   }
 };

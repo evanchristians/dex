@@ -7,17 +7,6 @@ import fetchWithCache from "../lib/fetchWithCache";
 
 const Index = ({ pokemon }: any) => {
   const [searchQuery, setSearchQuery] = useState("");
-  // const fetch = async () => {
-  //   const data = await fetchWithCache(
-  //     "https://pokeapi.co/api/v2/pokemon?limit=980"
-  //   ).then((res) => res.results);
-  //   return data;
-  // };
-
-  // const { data: pokemon } = useSWR(
-  //   "https://pokeapi.co/api/v2/pokemon?limit=980",
-  //   fetch
-  // );
 
   return (
     <Container minH="100vh">

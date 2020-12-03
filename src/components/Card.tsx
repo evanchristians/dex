@@ -54,7 +54,12 @@ export const Card: React.FC<ICard> = ({ url }) => {
               >
                 {poke ? (
                   <>
-                    <Types types={poke.types}></Types>
+                    <Types
+                      types={poke.types}
+                      position="absolute"
+                      top={2}
+                      left={2}
+                    />
                     <Box mt="auto">
                       <Image
                         src={poke.sprites.front_default}

@@ -1,12 +1,16 @@
-import { Flex, Tag } from "@chakra-ui/react";
+import { Flex, FlexProps, Tag } from "@chakra-ui/react";
 
-interface ITypes {
+interface ITypes extends FlexProps {
   types: any[];
 }
-export const Types = ({ types }: ITypes) => {
+export const Types = (props: ITypes) => {
   return (
-    <Flex alignItems="center" position="absolute" top={2} left={2}>
-      {types.map((type) => (
+    <Flex
+      alignItems="center"
+      justifyContent={["center", "center", "flex-start"]}
+      {...props}
+    >
+      {props.types.map((type) => (
         <Tag color="white" bg={"types." + type.type.name} mr={2}>
           {type.type.name}
         </Tag>

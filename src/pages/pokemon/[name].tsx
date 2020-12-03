@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useState } from "react";
+import { BackButton } from "../../components/BackButton";
 import { Container } from "../../components/Container";
 import EvoChain from "../../components/EvoChain";
 import { Types } from "../../components/Types";
@@ -21,37 +22,62 @@ const Pokemon = () => {
 
   return (
     <Container bg="purple.base">
+      <BackButton />
       <>
-        <Wrapper flexDir="row">
+        <Wrapper
+          flexDir="row"
+          justifyContent={["center", "center", "flex-start"]}
+        >
           <Heading
             my={12}
             fontSize="clamp(45px, 5vw, 76px)"
             textTransform="capitalize"
+            textAlign={["center", "center", "left"]}
           >
-            <Skeleton isLoaded={poke} startColor="purple.base" endColor="purple.light">
+            <Skeleton
+              isLoaded={poke}
+              startColor="purple.base"
+              endColor="purple.light"
+            >
               <Text
                 mr={2}
                 fontSize="clamp(24px, 4vw, 36px)"
                 color="purple.light"
-                display="flex"
               >
                 {poke
                   ? `No.${poke.id.toString().padStart(3, "0")}`
                   : "loading..."}
               </Text>
             </Skeleton>
-            <Skeleton isLoaded={poke} my={2} startColor="purple.base" endColor="purple.light">
-              {poke ? poke.name : "loading..."}
+            <Skeleton
+              isLoaded={poke}
+              startColor="purple.base"
+              endColor="purple.light"
+            >
+              <Text my={2}>{poke ? poke.name : "loading..."}</Text>
             </Skeleton>
-            <Skeleton isLoaded={poke} startColor="purple.base" endColor="purple.light">
+            <Skeleton
+              isLoaded={poke}
+              startColor="purple.base"
+              endColor="purple.light"
+            >
               <Box position="relative">
-                {poke ? <Types types={poke.types} /> : <Box height="4rem" width="10rem"></Box>}
+                {poke ? (
+                  <Types
+                    position="relative"
+                    types={poke.types}
+                  />
+                ) : (
+                  <Box height={20} width={500}></Box>
+                )}
               </Box>
             </Skeleton>
           </Heading>
-          <Skeleton isLoaded={poke} ml="auto" startColor="purple.base" endColor="purple.light">
-            {poke ? <EvoChain url={poke.species.url} /> : <Box height="8rem" width="16rem"></Box>}
-          </Skeleton>
+          {poke ? (
+            <EvoChain url={poke.species.url} />
+          ) : (
+            <Box height="8rem" width="16rem"></Box>
+          )}
         </Wrapper>
         <Flex
           justifyContent="center"
