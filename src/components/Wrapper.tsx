@@ -1,7 +1,6 @@
-import { Flex, FlexProps } from '@chakra-ui/react'
+import { Flex, FlexProps } from "@chakra-ui/react";
 
 export const Wrapper = (props: FlexProps) => {
-
   return (
     <Flex
       direction="column"
@@ -11,5 +10,5 @@ export const Wrapper = (props: FlexProps) => {
       px={4}
       {...props}
     />
-  )
-}
+  );
+};

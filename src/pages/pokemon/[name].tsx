@@ -21,7 +21,7 @@ const Pokemon = () => {
   }
 
   return (
-    <Container bg="purple.base">
+    <Container bg="purple.base" overflowX="hidden">
       <BackButton />
       <>
         <Wrapper
@@ -90,13 +90,14 @@ const Pokemon = () => {
           _after={{
             content: "''",
             bg: "purple.light",
-            width: "160vw",
+            width: "100vw",
             borderRadius: "50% 50% 0 0",
             height: "50vw",
             position: "absolute",
             top: "0",
             left: "50%",
-            transform: "translate(-50%, -7rem)",
+            transform: "scaleX(1.6) translate(-50%, -7rem)",
+            transformOrigin: "left",
             zIndex: "-1",
           }}
         >
