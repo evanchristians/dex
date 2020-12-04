@@ -4,7 +4,6 @@ import {
   Link,
   List,
   ListItem,
-  Skeleton,
   Spinner,
   Tag,
 } from "@chakra-ui/react";
@@ -15,9 +14,10 @@ import fetchWithCache from "../lib/fetchWithCache";
 
 export interface IEvoChain {
   url: string;
+  onLoad: CallableFunction;
 }
 
-export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
+export const EvoChain: React.FC<IEvoChain> = ({ url, onLoad }) => {
   const [species, setSpecies] = useState<any>();
   const [evoChain, setEvoChain] = useState<any>();
   const [evoDetails, setEvoDetails] = useState<any>([]);
@@ -35,6 +35,13 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
 
     return setter(list);
   };
+
+  useEffect(() => {
+    if (evoDetails.length > 0) {
+      onLoad();
+    }
+    return;
+  }, [evoDetails]);
 
   useEffect(() => {
     if (evoChain) {
@@ -60,57 +67,47 @@ export const EvoChain: React.FC<IEvoChain> = ({ url }) => {
   }, [url]);
 
   return (
-    <Skeleton
-      isLoaded={evoDetails.length > 0}
-      ml="auto"
-      startColor="purple.base"
-      endColor="purple.light"
-      minW={320}
-      minH={120}
-      display={["none", "none", "flex"]}
-    >
-      <Flex flexDir="column" ml="auto" alignItems="flex-end">
-        <List display="flex">
-          {evoDetails.length > 0
-            ? evoDetails.map((evoDetail: any, key: any) => {
-                return (
-                  <ListItem key={key} display="flex" borderRadius={12} mr={2}>
-                    <NextLink href={`/pokemon/${evoDetail.name}`}>
-                      <Link _hover={{ textDecoration: "none" }}>
-                        <Flex
-                          flexDir="column"
-                          alignItems="center"
-                          justifyContent="center"
-                          position="relative"
-                          p={2}
-                        >
-                          {evoDetail ? (
-                            <>
-                              <Box mt="auto">
-                                <Image
-                                  src={evoDetail.sprites.front_default}
-                                  alt={evoDetail.name}
-                                  width={80}
-                                  height={80}
-                                />
-                              </Box>
-                              <Tag color="white" bg="purple.light">
-                                No.{evoDetail.id.toString().padStart(3, "0")}
-                              </Tag>
-                            </>
-                          ) : (
-                            <Spinner color="white" />
-                          )}
-                        </Flex>
-                      </Link>
-                    </NextLink>
-                  </ListItem>
-                );
-              })
-            : null}
-        </List>
-      </Flex>
-    </Skeleton>
+    <Flex flexDir="column" ml="auto" alignItems="flex-end">
+      <List display="flex">
+        {evoDetails.length > 0
+          ? evoDetails.map((evoDetail: any, key: any) => {
+              return (
+                <ListItem key={key} display="flex" borderRadius={12} mr={2}>
+                  <NextLink href={`/pokemon/${evoDetail.name}`}>
+                    <Link _hover={{ textDecoration: "none" }}>
+                      <Flex
+                        flexDir="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        position="relative"
+                        p={2}
+                      >
+                        {evoDetail ? (
+                          <>
+                            <Box mt="auto">
+                              <Image
+                                src={evoDetail.sprites.front_default}
+                                alt={evoDetail.name}
+                                width={80}
+                                height={80}
+                              />
+                            </Box>
+                            <Tag color="white" bg="purple.light">
+                              No.{evoDetail.id.toString().padStart(3, "0")}
+                            </Tag>
+                          </>
+                        ) : (
+                          <Spinner color="white" />
+                        )}
+                      </Flex>
+                    </Link>
+                  </NextLink>
+                </ListItem>
+              );
+            })
+          : null}
+      </List>
+    </Flex>
   );
 };
 

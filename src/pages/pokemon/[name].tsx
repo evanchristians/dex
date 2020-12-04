@@ -1,4 +1,12 @@
-import { Box, Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Skeleton,
+  SkeletonCircle,
+  Tag,
+  Text,
+} from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -13,6 +21,8 @@ const Pokemon = () => {
   const router = useRouter();
   const { name } = router.query;
   const [poke, setPoke] = useState<any>();
+  const [evoChainLoaded, setEvoChainLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   if (name) {
     fetchWithCache(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>
@@ -44,9 +54,7 @@ const Pokemon = () => {
                 fontSize="clamp(24px, 4vw, 36px)"
                 color="purple.light"
               >
-                {poke
-                  ? `No.${poke.id.toString().padStart(3, "0")}`
-                  : "loading..."}
+                {poke ? `No.${poke.id.toString().padStart(3, "0")}` : "Loading"}
               </Text>
             </Skeleton>
             <Skeleton
@@ -54,7 +62,7 @@ const Pokemon = () => {
               startColor="purple.base"
               endColor="purple.light"
             >
-              <Text my={2}>{poke ? poke.name : "loading..."}</Text>
+              <Text my={2}>{poke ? poke.name : "Loading"}</Text>
             </Skeleton>
             <Skeleton
               isLoaded={poke}
@@ -63,21 +71,29 @@ const Pokemon = () => {
             >
               <Box position="relative">
                 {poke ? (
-                  <Types
-                    position="relative"
-                    types={poke.types}
-                  />
+                  <Types position="relative" types={poke.types} />
                 ) : (
-                  <Box height={20} width={500}></Box>
+                  <Box height="24px" width={400} />
                 )}
               </Box>
             </Skeleton>
           </Heading>
-          {poke ? (
-            <EvoChain url={poke.species.url} />
-          ) : (
-            <Box height="8rem" width="16rem"></Box>
-          )}
+          <Skeleton
+            isLoaded={evoChainLoaded}
+            ml="auto"
+            startColor="purple.base"
+            endColor="purple.light"
+            minW={320}
+            minH={120}
+            display={["none", "none", "flex"]}
+          >
+            {poke ? (
+              <EvoChain
+                url={poke.species.url}
+                onLoad={() => setEvoChainLoaded(true)}
+              />
+            ) : null}
+          </Skeleton>
         </Wrapper>
         <Flex
           justifyContent="center"
@@ -102,15 +118,24 @@ const Pokemon = () => {
           }}
         >
           <Wrapper>
-            <Box alignSelf="center" transform="translateY(-15rem)">
-              {poke ? (
-                <Image
-                  src={poke.sprites.other["official-artwork"].front_default}
-                  alt={poke.name}
-                  width={330}
-                  height={330}
-                />
-              ) : null}
+            <Box alignSelf="center" transform="translateY(-15rem)" px={6}>
+              <Skeleton
+                isLoaded={imageLoaded}
+                startColor="purple.base"
+                endColor="purple.light"
+              >
+                {poke ? (
+                  <Image
+                    src={poke.sprites.other["official-artwork"].front_default}
+                    alt={poke.name}
+                    width={330}
+                    height={330}
+                    onLoad={() => setImageLoaded(true)}
+                  />
+                ) : (
+                  <Image src="/null" width={330} height={330} />
+                )}
+              </Skeleton>
             </Box>
           </Wrapper>
         </Flex>
