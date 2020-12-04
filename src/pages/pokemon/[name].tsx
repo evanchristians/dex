@@ -1,12 +1,4 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Skeleton,
-  SkeletonCircle,
-  Tag,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Skeleton, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React, { useState } from "react";
